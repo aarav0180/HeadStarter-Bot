@@ -88,6 +88,70 @@ export default function SuccessStoriesSection() {
     },
   ]
 
+  // Split stories into 3 staggered rows with different starting positions
+  const row1 = [...successStories.slice(0, 4), ...successStories.slice(0, 4)]
+  const row2 = [...successStories.slice(4, 8), ...successStories.slice(4, 8)]
+  const row3 = [...successStories.slice(8, 12), ...successStories.slice(8, 12)]
+
+  type SuccessStory = {
+    name: string;
+    role: string;
+    year: string;
+    logo: string;
+    company: string;
+  };
+
+  const SuccessCard = ({ story, index }: { story: SuccessStory; index: number }) => (
+    <div
+      className="min-w-[380px] mx-3 group cursor-pointer"
+      style={{
+        animationDelay: `${index * 0.1}s`
+      }}
+    >
+      <div className="relative px-6 py-4 rounded-2xl backdrop-blur-xl bg-gradient-to-br from-[#39D39F]/20 via-[#39D39F]/10 to-white/5 border border-[#39D39F]/30 hover:border-[#39D39F]/60 transition-all duration-500 hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-[#39D39F]/20">
+        {/* Glassy overlay effect with colors */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#39D39F]/15 via-emerald-400/5 to-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        {/* Animated border glow */}
+        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#39D39F]/30 via-emerald-400/20 to-cyan-400/20 blur-sm"></div>
+        </div>
+
+        <div className="relative z-10">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-[#39D39F] transition-colors duration-300">
+                {story.name}
+              </h3>
+              <p className="text-sm text-[#39D39F]/90 mb-1 font-medium">
+                {story.role}
+              </p>
+              <p className="text-xs text-[#39D39F] font-semibold bg-[#39D39F]/20 px-3 py-1 rounded-full inline-block border border-[#39D39F]/40">
+                {story.year}
+              </p>
+            </div>
+            <div className="ml-4 text-3xl group-hover:scale-110 transition-transform duration-300 bg-white/10 p-2 rounded-xl backdrop-blur-sm">
+              {story.logo}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+
+
+  // Hardcoded simple marquee row (always scrolls left, no SSR issues)
+  const MarqueeRow = ({ stories }: { stories: SuccessStory[] }) => (
+    <div className="relative overflow-hidden py-3">
+      <div className="flex marquee-track">
+        {stories.map((story, index) => (
+          <SuccessCard key={`marquee-${index}`} story={story} index={index} />
+        ))}
+      </div>
+    </div>
+  )
+
+
   return (
     <section className="py-20 px-6">
       <div className="container mx-auto max-w-7xl">
@@ -97,35 +161,28 @@ export default function SuccessStoriesSection() {
           <span className="text-white">have landed roles at top companies.</span>
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {successStories.map((story, index) => (
-            <div
-              key={index}
-              className="p-6 rounded-2xl backdrop-blur-md bg-[#1a1f2e]/80 border border-white/10 hover:border-[#39D39F]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#39D39F]/10"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold text-white mb-1">{story.name}</h3>
-                  <p className="text-sm text-[#EAEAEA]/70 mb-1">{story.role}</p>
-                  <p className="text-xs text-[#EAEAEA]/50">{story.year}</p>
-                </div>
-                <div className="ml-4 text-2xl">{story.logo}</div>
-              </div>
-            </div>
-          ))}
+       {/* Staggered Marquee Rows with different offsets */}
+       <div className="space-y-4 mb-16">
+          <MarqueeRow stories={row1} />
+          <MarqueeRow stories={row2} />
+          <MarqueeRow stories={row3} />
+        </div>
         </div>
 
-        <div className="text-center mt-16">
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 rounded-xl backdrop-blur-md bg-[#39D39F]/20 border border-[#39D39F] hover:bg-[#39D39F]/30 transition-all duration-300">
-              <span className="text-base font-medium text-[#39D39F]">Start Free Trial</span>
-            </button>
-            <button className="px-8 py-4 rounded-xl backdrop-blur-md bg-white/5 border border-white/20 hover:border-[#39D39F]/50 transition-all duration-300">
-              <span className="text-base font-medium text-white">Apply BuildCore</span>
-            </button>
-          </div>
-        </div>
-      </div>
+      <style jsx>{`
+        @keyframes simple-marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .marquee-track {
+          width: 200%;
+          animation: simple-marquee 25s linear infinite;
+        }
+      `}</style>
     </section>
   )
 }
