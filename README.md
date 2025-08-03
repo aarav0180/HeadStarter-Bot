@@ -9,7 +9,7 @@ A modern, responsive Next.js web application that provides an intuitive chat int
 
 ## 🚀 Live Demo
 
-**Frontend**: [HeadStarter Bot Frontend](https://headstarter-bot.vercel.app)  
+**Frontend**: [HeadStarter Bot Frontend](https://head-starter-bot-em64.vercel.app/)  
 **Backend Repository**: [HeadStarter Bot Backend](https://github.com/aarav0180/HeadStarter-Back)
 
 ## ✨ Features
@@ -68,16 +68,10 @@ A modern, responsive Next.js web application that provides an intuitive chat int
 ## 📱 Screenshots
 
 ### 🏠 **Landing Page**
-![Landing Page](https://via.placeholder.com/800x400/0A0F1A/EAEAEA?text=HeadStarter+Bot+Landing+Page)
+<img width="1847" height="898" alt="Screenshot 2025-08-04 033001" src="https://github.com/user-attachments/assets/cde29476-3486-4a72-974f-564021688bbd" />
 
 ### 💬 **Chat Interface**
-![Chat Interface](https://via.placeholder.com/800x400/0A0F1A/EAEAEA?text=Chat+Interface+with+Code+Highlighting)
-
-### 🔍 **Web Search Mode**
-![Web Search](https://via.placeholder.com/800x400/0A0F1A/EAEAEA?text=Interactive+Progress+Bar+with+SSE)
-
-### 📱 **Mobile Responsive**
-![Mobile View](https://via.placeholder.com/400x600/0A0F1A/EAEAEA?text=Mobile+Responsive+Design)
+<img width="1850" height="894" alt="Screenshot 2025-08-04 032942" src="https://github.com/user-attachments/assets/5f57202e-8f59-4e14-9865-476f719e91be" />
 
 ## 🛠️ Technology Stack
 
